@@ -1,0 +1,86 @@
+:root {
+  --color1: rgb(197, 0, 98);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  gap: 3em;
+  min-height: 100dvh;
+  place-content: center;
+  place-items: center;
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: rgb(36, 36, 36);
+}
+
+.pulser {
+  width: 5em;
+  height: 5em;
+  background-color: var(--color1);
+  border-radius: 50%;
+  position: relative;
+  transition: 0.5s ease;
+}
+
+.pulser::after {
+  animation: pulse 1.5s ease-in-out 1s infinite;
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color1);
+  border-radius: 50%;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.4);
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.pulser:nth-child(2) {
+  animation: mover 1s ease infinite alternate both,
+    agrandar 2s cubic-bezier(0.4, 0, 0.2, 1) 2s infinite alternate both;
+}
+
+.pulser:nth-child(2):hover {
+  animation-play-state: paused;
+  filter: contrast(150%);
+}
+
+@keyframes mover {
+  from {
+    transform: translateX(-100px);
+  }
+  to {
+    transform: translateX(100px);
+  }
+}
+
+@keyframes agrandar {
+  0% {
+    scale: 1;
+  }
+  100% {
+    scale: 2;
+  }
+}
